@@ -1,3 +1,5 @@
+import { router } from '../routers/users.js';
+
 import express from "express";
 import cors from 'cors';
 
@@ -6,6 +8,7 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+        this.userPath = '/api/users';
 
         // Middlewares
         this.middleware();
@@ -23,33 +26,7 @@ class Server {
     }
 
     routes(){
-        this.app.get('/api', (req, res) => {
-            res.json({
-                ok: true,
-                msg: 'Peticion API'
-            })
-        })
-
-        this.app.put('/api', (req, res) => {
-            res.status(201).json({
-                ok: true,
-                msg: 'Peticion Put API'
-            })
-        })
-
-        this.app.post('/api', (req, res) => {
-            res.json({
-                ok: true,
-                msg: 'Peticion Post API'
-            })
-        })
-
-        this.app.delete('/api', (req, res) => {
-            res.status(500).json({
-                ok: true,
-                msg: 'Peticion Delete API'
-            })
-        })
+        this.app.use(this.userPath, router);
     }
 
     listen(){
