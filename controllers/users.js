@@ -1,16 +1,26 @@
 import { response, request } from "express";
 
-const usersGet = (req, res = response) => {
+const usersGet = (req = request, res = response) => {
+
+    const {nombre, apikey, edad, q} = req.query;
+
     res.json({
         ok: true,
-        msg: 'Peticion API - Controlador'
+        msg: 'Peticion API - Controlador',
+        nombre,
+        apikey,
+        edad,
+        q,
     })
 }
 
-const usersPut = (req, res = response) => {
+const usersPut = (req = request, res = response) => {
+
+    const id = req.params.id;
     res.json({
         ok: true,
-        msg: 'Peticion Put - Controlador'
+        msg: 'Peticion Put - Controlador',
+        id
     })
 }
 
