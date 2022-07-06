@@ -1,4 +1,4 @@
-import { response } from "express";
+import { response, request } from "express";
 
 const usersGet = (req, res = response) => {
     res.json({
@@ -14,10 +14,12 @@ const usersPut = (req, res = response) => {
     })
 }
 
-const usersPost = (req, res = response) => {
+const usersPost = (req = request, res = response) => {
+    const body = req.body;
     res.json({
         ok: true,
-        msg: 'Peticion Post - Controlador'
+        msg: 'Peticion Post - Controlador',
+        body
     })
 }
 
